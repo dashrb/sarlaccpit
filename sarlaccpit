@@ -4,6 +4,7 @@
 import argparse
 import os
 import pprint
+import string
 from collections import defaultdict, Counter
 
 
@@ -80,9 +81,12 @@ if len(letters) > 0:
 print (f'=============  EXTERNAL TEXT FOR POSTING ONLINE  ==========')
 print ('')
 print ('')
-print (f'Welcome to poll number {poll_num} of #SarlaccPit, a Star Wars themed word-guessing game.')
+hashtags = '#Games #Puzzles #StarWars #SarlaccPit'
 if int(args.number) > 0:
-    print (f'This is game number {args.number}, making this #SarlaccPit{args.number}.')
+    print (f'This is poll {poll_num} in game {args.number} of SarlaccPit, a Star Wars themed word-guessing game.')
+    hashtags = f'{hashtags} #SarlaccPit{args.number}';
+else:
+    print (f'This is poll {poll_num} of SarlaccPit, a Star Wars themed word-guessing game.')
 print ('')
 print (characteristics)
 print ('')
@@ -97,6 +101,8 @@ for c in solution:
             solution_board = solution_board + f' {c}';
         else:
             solution_board = solution_board + ' _';
+    if c in string.punctuation:
+            solution_board = solution_board + ' ' + c;
     if c == ' ':
         solution_board = solution_board + ' /';
         if len(solution_board) > 25:
@@ -110,6 +116,6 @@ else:
     print (f'Rules: https://c.im/@darth_hideout/113631196868456567')
 print ('')
 print ('')
-print ('#Games #Puzzles #StarWars')
+print (f'{hashtags}')
 print ('')
 print ('')
